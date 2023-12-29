@@ -20,9 +20,13 @@ st.markdown(
 if "key" not in st.session_state:
     st.session_state.key = None
     
-key = st.sidebar.text_input("Your key", type="password")
-if not key:
+
+key = st.sidebar.text_input("Your key", type="password")    
+if key:
+    st.session_state.key =key
+    
+if not st.session_state.key: 
     st.info("Please add your key to continue.")
     st.stop()
-else:
-    st.session_state.key=key
+
+    
