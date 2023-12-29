@@ -87,12 +87,14 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
         
-
+def writeReply(cont,msg):
+    cont.write(msg)
+    
 if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("assistant"):
-            #stream_handler = StreamHandler(st.empty())
-            re = getAnswer(prompt,lambda x:st.write(x))
+            p=st.empty()
+            re = getAnswer(prompt,lambda x:writeReply(p,x))
             print(re)
             st.session_state.messages.append({"role": "assistant", "content": re})
