@@ -72,7 +72,7 @@ def getAnswer(prompt,feedback):
         print(chunk.text)
         print("_"*80)
         ret+=chunk.text
-        feedback(chunk.text)
+        feedback(ret)
     
     return ret
 
