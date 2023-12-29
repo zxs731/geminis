@@ -82,7 +82,7 @@ def getAnswer(prompt,image,feedback):
         print(chunk.text)
         print("_"*80)
         ret+=chunk.text
-        feedback(chunk.text)
+        feedback(ret)
     
     return ret
 
@@ -105,13 +105,14 @@ if img_file_buffer is not None:
     # To read image file buffer as a PIL Image:
     st.session_state.img = Image.open(img_file_buffer)
 
-
+def writeReply(cont,msg):
+    cont.write(msg)
     
 if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("assistant"):
-            #stream_handler = StreamHandler(st.empty())
-            re = getAnswer(prompt,st.session_state.img ,lambda x:st.write(x))
+            p=st.empty()
+            re = getAnswer(prompt,st.session_state.img ,lambda x:writeReply(p,x))
             print(re)
             st.session_state.messages.append({"role": "assistant", "content": re})
