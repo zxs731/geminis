@@ -82,7 +82,7 @@ def getAnswer(prompt,image,feedback):
         print(chunk.text)
         print("_"*80)
         ret+=chunk.text
-        feedback(chunk.text)
+        feedback(ret)
     
     return ret
 
@@ -121,6 +121,6 @@ if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("assistant"):
             p=st.empty()
-            re = getAnswer(prompt,lambda x:writeReply(p,x))
+            re = getAnswer(prompt,st.session_state.img ,lambda x:writeReply(p,x))
             print(re)
             st.session_state.messages.append({"role": "assistant", "content": re})
