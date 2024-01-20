@@ -1,4 +1,5 @@
 import streamlit as st
+import toml
 st.config.session_state_persistence = True        
 st.set_page_config(
     page_title="Gemini",
@@ -21,7 +22,8 @@ if "key" not in st.session_state:
     st.session_state.key = None
     
 
-key = st.sidebar.text_input("Your key", type="password")    
+key = st.sidebar.text_input("Your key", type="password") 
+key = toml.load('secret.toml')   
 if key:
     st.session_state.key =key
     
