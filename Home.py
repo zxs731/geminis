@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 st.config.session_state_persistence = True        
 st.set_page_config(
     page_title="Gemini",
