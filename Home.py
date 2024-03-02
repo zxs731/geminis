@@ -22,11 +22,9 @@ if "key" not in st.session_state:
     st.session_state.key = None
     
 
-gkey=None
-if "gemini-key" in os.environ:
-    gkey=os.environ["gemini-key"]
+
     
-key = st.sidebar.text_input("Your key", type="password",value=gkey)
+key = st.sidebar.text_input("Your key", type="password")
  
 if key:
     st.session_state.key =key
